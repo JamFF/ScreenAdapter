@@ -4,5 +4,6 @@
     <array name="main_items">
         <item>自定义像素适配</item>
         <item>谷歌百分比适配</item>
+        <item>自定义百分比适配</item>
     </array>
 </resources>

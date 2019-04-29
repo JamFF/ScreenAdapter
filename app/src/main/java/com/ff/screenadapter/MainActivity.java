@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.ff.screenadapter.percent.GooglePercentFragment;
+import com.ff.screenadapter.percent.MyPercentFragment;
 import com.ff.screenadapter.pixel.PixelFragment;
 import com.ff.screenadapter.pixel.utils.UIUtils;
 
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
                     .add(mRoot.getId(), new MainFragment(), MainFragment.class.getName())
                     .commit();
         }
-
         UIUtils.INSTANCE.init(getApplicationContext());
     }
 
@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
                 break;
             case 1:
                 fragment = new GooglePercentFragment();
+                break;
+            case 2:
+                fragment = new MyPercentFragment();
                 break;
             default:
                 return;
