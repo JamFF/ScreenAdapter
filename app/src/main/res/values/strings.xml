@@ -5,5 +5,7 @@
         <item>自定义像素适配</item>
         <item>谷歌百分比适配</item>
         <item>自定义百分比适配</item>
+        <item>Density适配Activity</item>
+        <item>Density适配Fragment</item>
     </array>
 </resources>

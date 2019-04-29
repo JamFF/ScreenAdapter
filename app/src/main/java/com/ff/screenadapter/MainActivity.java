@@ -1,5 +1,6 @@
 package com.ff.screenadapter;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.ff.screenadapter.density.DensityActivity;
+import com.ff.screenadapter.density.DensityFragment;
 import com.ff.screenadapter.percent.GooglePercentFragment;
 import com.ff.screenadapter.percent.MyPercentFragment;
 import com.ff.screenadapter.pixel.PixelFragment;
@@ -55,12 +58,18 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
             case 2:
                 fragment = new MyPercentFragment();
                 break;
+            case 3:
+                startActivity(new Intent(this, DensityActivity.class));
+                return;
+            case 4:
+                fragment = new DensityFragment();
+                break;
             default:
                 return;
 
         }
         getSupportFragmentManager().beginTransaction()
-                .replace(mRoot.getId(), fragment)
+                .replace(mRoot.getId(), fragment, fragment.getClass().getName())
                 .addToBackStack(null)
                 .commit();
     }

@@ -44,3 +44,43 @@ App 会根据当前手机的分辨率自动选择对应的 dimens.xml
 
 参照：MyPercentFragment  
 再推荐一个[百分比布局库的扩展](https://github.com/hongyangAndroid/android-percent-support-extend)
+
+## density 适配
+修改 density, scaleDensity, densityDpi值——直接更改系统内部对于目标尺寸而言的像素密度。
+
+由于不同的设备，哪怕分辨率一样，density 的值都会不一样，所以这就需要我们根据分辨率来修改 density 的值。
+
+* density: 屏幕的密度，例如参考像素密度为160，每一英寸有160个像素点，那么运行在像素密度为320的设备上，density就是2了。这个参考像素是需要设计师提供的。
+* scaleDensity: 字体缩放比例，默认情况scaleDensity等于density。
+* densityDpi: 屏幕上每一英寸的像素点个数。
+
+可以看下 TypedValue 类：
+```java
+public static float applyDimension(int unit, float value,
+                                   DisplayMetrics metrics) {
+    switch (unit) {
+        case COMPLEX_UNIT_PX:
+            return value;
+        case COMPLEX_UNIT_DIP:
+            return value * metrics.density;
+        case COMPLEX_UNIT_SP:
+            return value * metrics.scaledDensity;
+        case COMPLEX_UNIT_PT:
+            return value * metrics.xdpi * (1.0f/72);
+        case COMPLEX_UNIT_IN:
+            return value * metrics.xdpi;
+        case COMPLEX_UNIT_MM:
+            return value * metrics.xdpi * (1.0f/25.4f);
+    }
+    return 0;
+}
+```
+
+使用时可以根据需求放在 Activity、Fragment、基类、或者 Application 中。
+
+优势：
+* 适配非常简单、快速
+
+劣势：
+* 部分设备不允许修改density
+* 顶部的 ToolBar 的高度也会被改变，横竖屏切换时更明显
