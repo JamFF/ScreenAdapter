@@ -7,5 +7,6 @@
         <item>自定义百分比适配</item>
         <item>Density适配Activity</item>
         <item>Density适配Fragment</item>
+        <item>刘海屏适配</item>
     </array>
 </resources>

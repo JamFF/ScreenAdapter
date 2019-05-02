@@ -16,6 +16,7 @@ public enum UIUtils {
 
     INSTANCE;
 
+    // 标准值  正常情况下应该保存在配置文件中
     private static final float STANDARD_WIDTH = 1080;// 基准宽（短边）
     private static final float STANDARD_HEIGHT = 1920;// 基准高（长边）
 
@@ -24,8 +25,11 @@ public enum UIUtils {
 
     private static float displayMetricsWidth = 0;// 屏幕的实际宽（短边）
     private static float displayMetricsHeight = 0;// 屏幕的实际高（长边）
-    private static float systemBarHeight;// 状态栏高度
+    private static float statusBarHeight;// 状态栏高度
 
+    /**
+     * 初始化，必须先要执行，才可使用工具类
+     */
     public void init(Context context) {
         if (displayMetricsWidth == 0 || displayMetricsHeight == 0) {
             // 计算缩放系数
@@ -36,21 +40,22 @@ public enum UIUtils {
             DisplayMetrics displayMetrics = new DisplayMetrics();
             // 在这里得到设备的真实值
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-            // systemBarHeight = reflectStatusBarHeight(context, 60);// 反射获取
-            systemBarHeight = getStatusBarHeight(context, 60);
 
             // 判断手机方向
             if (displayMetrics.widthPixels > displayMetrics.heightPixels) {
                 // 横屏时，短边为手机的高
                 displayMetricsWidth = (float) (displayMetrics.heightPixels);
                 // 横屏时，长边为手机的宽减去状态栏（因为一般UI设计图中没有考虑状态栏高度）
-                displayMetricsHeight = displayMetrics.widthPixels - systemBarHeight;
+                displayMetricsHeight = displayMetrics.widthPixels - statusBarHeight;
             } else {
                 // 竖屏时，短边为手机的宽
                 displayMetricsWidth = (float) (displayMetrics.widthPixels);
                 // 竖屏时，长边为手机的高减去状态栏（因为一般UI设计图中没有考虑状态栏高度）
-                displayMetricsHeight = displayMetrics.heightPixels - systemBarHeight;
+                displayMetricsHeight = displayMetrics.heightPixels - statusBarHeight;
             }
+
+            // statusBarHeight = reflectStatusBarHeight(context, 60);// 反射获取
+            statusBarHeight = getStatusBarHeight(context, 60);
         }
     }
 
@@ -79,7 +84,7 @@ public enum UIUtils {
      */
     public float getVerticalScaleValue() {
         checkInit();
-        return displayMetricsHeight / (STANDARD_HEIGHT - systemBarHeight);
+        return displayMetricsHeight / (STANDARD_HEIGHT - statusBarHeight);
     }
 
     public int getWidth(int width) {
@@ -89,7 +94,7 @@ public enum UIUtils {
 
     public int getHeight(int height) {
         checkInit();
-        return Math.round((float) height * displayMetricsHeight / (STANDARD_HEIGHT - systemBarHeight));
+        return Math.round((float) height * displayMetricsHeight / (STANDARD_HEIGHT - statusBarHeight));
     }
 
     /**
@@ -136,6 +141,15 @@ public enum UIUtils {
         if (resourceId > 0) {
             return resources.getDimensionPixelSize(resourceId);
         }
-        return 0;
+        return defaultValue;
+    }
+
+    /**
+     * 获取状态栏高度
+     *
+     * @param context 上下文
+     */
+    public int getStatusBarHeight(Context context) {
+        return getStatusBarHeight(context, 60);
     }
 }

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.ff.screenadapter.cutout.DisplayCutoutActivity;
 import com.ff.screenadapter.density.DensityActivity;
 import com.ff.screenadapter.density.DensityFragment;
 import com.ff.screenadapter.percent.GooglePercentFragment;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
             case 4:
                 fragment = new DensityFragment();
                 break;
+            case 5:
+                startActivity(new Intent(this, DisplayCutoutActivity.class));
+                return;
             default:
                 return;
 

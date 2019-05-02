@@ -14,6 +14,9 @@ import android.widget.TextView;
  */
 public class ViewCalculateUtil {
 
+    /**
+     * 设置RelativeLayout中 view的高度宽度
+     */
     public static void setViewRelativeLayoutParam(View view, int width, int height,
                                                   int topMargin, int bottomMargin,
                                                   int lefMargin, int rightMargin) {
@@ -37,6 +40,17 @@ public class ViewCalculateUtil {
         layoutParams.leftMargin = UIUtils.INSTANCE.getWidth(lefMargin);
         layoutParams.rightMargin = UIUtils.INSTANCE.getWidth(rightMargin);
         view.setLayoutParams(layoutParams);
+    }
+
+    /**
+     * 设置view的内边距
+     */
+    public static void setViewPadding(View view, int topPadding, int bottomPadding,
+                                      int leftPadding, int rightPadding) {
+        view.setPadding(UIUtils.INSTANCE.getWidth(leftPadding),
+                UIUtils.INSTANCE.getHeight(topPadding),
+                UIUtils.INSTANCE.getWidth(rightPadding),
+                UIUtils.INSTANCE.getHeight(bottomPadding));
     }
 
     /**
@@ -72,6 +86,9 @@ public class ViewCalculateUtil {
         view.setLayoutParams(layoutParams);
     }
 
+    /**
+     * 设置RelativeLayout中 view的高度宽度
+     */
     public static void setViewGroupLayoutParam(View view, int width, int height) {
 
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
