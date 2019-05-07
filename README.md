@@ -46,13 +46,15 @@ App 会根据当前手机的分辨率自动选择对应的 dimens.xml
 再推荐一个[百分比布局库的扩展](https://github.com/hongyangAndroid/android-percent-support-extend)
 
 ## density 适配
-修改 density, scaleDensity, densityDpi值——直接更改系统内部对于目标尺寸而言的像素密度。
+这个方式是针对 dp 单位的适配，修改 density, scaleDensity, densityDpi值，直接更改系统内部对于目标尺寸而言的像素密度。
 
 由于不同的设备，哪怕分辨率一样，density 的值都会不一样，所以这就需要我们根据分辨率来修改 density 的值。
 
-* density: 屏幕的密度，例如参考像素密度为160，每一英寸有160个像素点，那么运行在像素密度为320的设备上，density就是2了。这个参考像素是需要设计师提供的。
-* scaleDensity: 字体缩放比例，默认情况scaleDensity等于density。
-* densityDpi: 屏幕上每一英寸的像素点个数。
+[Android屏幕适配——使用 dp 实现完美适配](https://www.jianshu.com/p/1c577893d7d3)
+
+* densityDpi: 就是api，屏幕上每一英寸的像素点个数，常见的有120，160，240。
+* density: 缩放系数，Android源码中的参考像素密度为160，运行在api为120，160，240的设备上，density就分别是0.75，1，1.5了。
+* scaleDensity: 字体缩放系数，默认情况scaleDensity等于density。
 
 可以看下 TypedValue 类：
 ```java
@@ -78,9 +80,11 @@ public static float applyDimension(int unit, float value,
 
 使用时可以根据需求放在 Activity、Fragment、基类、或者 Application 中。
 
+
+
 优势：
 * 适配非常简单、快速
 
 劣势：
-* 部分设备不允许修改density
+* 部分设备不允许修改density（暂时未发现）
 * 顶部的 ToolBar 的高度也会被改变，横竖屏切换时更明显

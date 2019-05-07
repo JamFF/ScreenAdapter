@@ -7,7 +7,7 @@ import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 
 /**
- * description: Density适配
+ * description: Density适配，针对dp单位适配的
  * author: FF
  * time: 2019-04-29 16:01
  */
@@ -42,19 +42,20 @@ public class Density {
             appScaleDensity = sDisplayMetrics.scaledDensity;
         }
 
-        // 计算目标值density, scaleDensity, densityDpi
+        // 计算目标值density, scaleDensity, densityDpi 具体参照 README
         float targetDensity = sDisplayMetrics.widthPixels / WIDTH;
         float targetScaleDensity = targetDensity * (appScaleDensity / appDensity);
-        int targetDensityDpi = (int) (targetDensity * 160);// TODO: 2019-04-29
+        int targetDensityDpi = (int) (targetDensity * DisplayMetrics.DENSITY_DEFAULT);
 
         // 替换Activity的density, scaleDensity, densityDpi
         DisplayMetrics dm = activity.getResources().getDisplayMetrics();
 
         // 记录下初始值，以便Fragment还原时使用
-        oldDensity = dm.density;
-        oldScaledDensity = dm.scaledDensity;
-        oldDensityDpi = dm.densityDpi;
+        oldDensity = dm.density;// 缩放系数，针对dp
+        oldScaledDensity = dm.scaledDensity;// 字体的缩放系数，针对sp
+        oldDensityDpi = dm.densityDpi;// 每英寸的像素点
 
+        // 修改为适配后的值
         dm.density = targetDensity;
         dm.scaledDensity = targetScaleDensity;
         dm.densityDpi = targetDensityDpi;

@@ -30,6 +30,7 @@ public class UIRelativeLayout extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO: 2019-05-06 注意，在Activity中使用回调两次，放在Fragment中会执行一次onMeasure
         if (isFirst) {
             // 会多次执行，使用标记控制
             isFirst = false;
