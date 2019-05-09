@@ -50,7 +50,8 @@ App 会根据当前手机的分辨率自动选择对应的 dimens.xml
 
 由于不同的设备，哪怕分辨率一样，density 的值都会不一样，所以这就需要我们根据分辨率来修改 density 的值。
 
-[Android屏幕适配——使用 dp 实现完美适配](https://www.jianshu.com/p/1c577893d7d3)
+[Android屏幕适配——使用 dp 实现完美适配](https://www.jianshu.com/p/1c577893d7d3)  
+[一种极低成本的Android屏幕适配方式](https://mp.weixin.qq.com/s?__biz=MzI1MzYzMjE0MQ==&mid=2247484502&idx=2&sn=a60ea223de4171dd2022bc2c71e09351&chksm=e9d0cfb4dea746a2e2c470448a85df0c0e7dd059099ca52a2fec0311d12b7279b3d6f1d137be&mpshare=1&scene=1&srcid=&key=4c038a0a0f8a008bc21ca919951b96e4e2ed1304833c3bcda96fccd8c75964e91766896e9b5c7a4a9b5af2b6c89ec900b2e630898e01adab38e75b971b7016d9a9cc9e60cc318d5a543427b996110206&ascene=1&uin=MTU3NTU3MzU2MQ%3D%3D&devicetype=Windows+10&version=62060739&lang=zh_CN&pass_ticket=o3Qu9qpivjrYejx0xw4JwoauxafJchpPsWYJ1nj8G7DzMURNuLsZBiVgu1c%2FQfx%2B&winzoom=1)
 
 * densityDpi: 就是api，屏幕上每一英寸的像素点个数，常见的有120，160，240。
 * density: 缩放系数，Android源码中的参考像素密度为160，运行在api为120，160，240的设备上，density就分别是0.75，1，1.5了。

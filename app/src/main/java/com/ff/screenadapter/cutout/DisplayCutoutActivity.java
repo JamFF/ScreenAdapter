@@ -73,9 +73,9 @@ public class DisplayCutoutActivity extends AppCompatActivity {
         button.setLayoutParams(layoutParams);
 
         // 或者设置父容器的paddingTop
-//        RelativeLayout layout = findViewById(R.id.container);
-//        layout.setPadding(layout.getPaddingLeft(), heightForDisplayCutout(),
-//                layout.getPaddingRight(), layout.getPaddingBottom());
+        /*RelativeLayout layout = findViewById(R.id.container);
+        layout.setPadding(layout.getPaddingLeft(), heightForDisplayCutout(),
+                layout.getPaddingRight(), layout.getPaddingBottom());*/
     }
 
     /**
