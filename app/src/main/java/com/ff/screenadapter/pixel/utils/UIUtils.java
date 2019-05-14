@@ -59,6 +59,9 @@ public enum UIUtils {
         }
     }
 
+    /**
+     * 横竖屏切换时使用
+     */
     public void notifyInstance(Context context) {
         displayMetricsWidth = 0;
         displayMetricsHeight = 0;
